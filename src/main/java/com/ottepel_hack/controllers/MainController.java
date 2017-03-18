@@ -49,11 +49,12 @@ public class MainController {
 //            return new Response(false, e.getMessage());
 //        }
         Response response = new Response(null);
-        try {
-            response.setBody(solutionManager.testSolution(levelStateFactory.getSimpleLevel(), "for (i = 0; i < 5; i++) { moveLeft(); }"));
-        } catch (ScriptException e) {
-            return new Response(false, e.getMessage());
-        }
+        response.setBody(levelStateFactory.getSimpleLevel());
+//        try {
+//            response.setBody(solutionManager.testSolution(levelStateFactory.getSimpleLevel(), "for (i = 0; i < 5; i++) { moveLeft(); }"));
+//        } catch (ScriptException e) {
+//            return new Response(false, e.getMessage());
+//        }
         return response;
     }
 
