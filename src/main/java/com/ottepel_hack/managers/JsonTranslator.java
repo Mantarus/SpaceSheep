@@ -6,6 +6,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import javax.script.Invocable;
 import javax.script.ScriptEngine;
 import javax.script.ScriptException;
@@ -21,8 +22,13 @@ public class JsonTranslator {
     @Autowired
     private ScriptEngine scriptEngine;
 
-    private Invocable invocable;
     private FileReader fileReader;
+
+    @PostConstruct
+    public void loadResources() throws IOException, ScriptException {
+        fileReader = new FileReader(new ClassPathResource("js_scripts/predefined_functions.js").getFile());
+        scriptEngine.eval(fileReader);
+    }
 
     public Object execute(String javascript) throws ScriptException {
         return scriptEngine.eval(javascript);

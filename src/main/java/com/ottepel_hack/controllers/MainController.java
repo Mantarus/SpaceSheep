@@ -23,10 +23,10 @@ public class MainController {
         return "Hello!";
     }
 
-    @RequestMapping(value = "/testSolution", method = RequestMethod.POST)
-    public Response testSolution(Request request) {
+    @RequestMapping(value = "/testSolution", method = RequestMethod.GET)
+    public Response testSolution() {
         try {
-            return new Response(true, solutionManager.testSolution((String) request.getBody()));
+            return new Response(true, solutionManager.testSolution("fun1('hello')"));
         } catch (ScriptException e) {
             return new Response(false, e.getMessage());
         }
