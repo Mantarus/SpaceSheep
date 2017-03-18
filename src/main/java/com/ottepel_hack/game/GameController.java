@@ -16,13 +16,13 @@ import java.util.List;
 public class GameController {
 
     @Autowired
-    private LevelStateFactory levelStateFactory;
+    private LevelManager levelManager;
 
     @Autowired
     private JavaScriptTranslator javaScriptTranslator;
 
     public LevelState startSimpleLevel() {
-        return levelStateFactory.getSimpleLevel();
+        return levelManager.getNewLevel();
     }
 
     public SolutionResponseBody executeScript(String script, LevelState levelState) throws ScriptException {

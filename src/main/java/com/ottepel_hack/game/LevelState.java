@@ -3,7 +3,6 @@ package com.ottepel_hack.game;
 import com.ottepel_hack.game.keypoints.Finish;
 import com.ottepel_hack.game.keypoints.Sheep;
 import com.ottepel_hack.game.keypoints.Start;
-import com.ottepel_hack.game.tilesets.TileSet;
 
 import java.util.List;
 

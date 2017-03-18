@@ -1,6 +1,6 @@
 package com.ottepel_hack.controllers;
 
-import com.ottepel_hack.game.LevelStateFactory;
+import com.ottepel_hack.game.LevelManager;
 import com.ottepel_hack.managers.SolutionManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,9 +19,6 @@ public class MainController {
     @Autowired
     SolutionManager solutionManager;
 
-    @Autowired
-    LevelStateFactory levelStateFactory;
-
     @RequestMapping("/")
     public Object sayHello(@RequestParam("param") String param) {
         return "Hello!";
@@ -36,12 +33,18 @@ public class MainController {
         }
     }
 
+    @RequestMapping("/getlevel")
+    public Response getLevel() {
+        LevelManager.getNewLevel();
+        return new Response(null);
+    }
+
     @RequestMapping("/test")
     public Response test() {
 //        Response response = new Response(null);
 //        SolutionResponseBody body = new SolutionResponseBody();
 //        response.setBody(body);
-//        body.setLevelState(levelStateFactory.getSimpleLevel());
+//        body.setLevelState(levelStateFactory.getNewLevel());
 //        try {
 //            body.setSequence(solutionManager.testSolution("for (i = 0; i < 5; i++) { moveLeft(); }"));
 //            return response;
@@ -49,9 +52,9 @@ public class MainController {
 //            return new Response(false, e.getMessage());
 //        }
         Response response = new Response(null);
-        response.setBody(levelStateFactory.getSimpleLevel());
+        response.setBody(LevelManager.getNewLevel());
 //        try {
-//            response.setBody(solutionManager.testSolution(levelStateFactory.getSimpleLevel(), "for (i = 0; i < 5; i++) { moveLeft(); }"));
+//            response.setBody(solutionManager.testSolution(levelStateFactory.getNewLevel(), "for (i = 0; i < 5; i++) { moveLeft(); }"));
 //        } catch (ScriptException e) {
 //            return new Response(false, e.getMessage());
 //        }

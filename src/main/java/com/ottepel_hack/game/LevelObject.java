@@ -12,8 +12,7 @@ public abstract class LevelObject {
     public LevelObject() {
     }
 
-    public LevelObject(LevelState levelState, Integer xPos, Integer yPos) {
-//        this.levelState = levelState;
+    public LevelObject(Integer xPos, Integer yPos) {
         this.xPos = xPos;
         this.yPos = yPos;
     }
