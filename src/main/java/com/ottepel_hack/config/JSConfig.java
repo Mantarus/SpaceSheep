@@ -2,6 +2,7 @@ package com.ottepel_hack.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
@@ -13,6 +14,7 @@ import javax.script.ScriptEngineManager;
 public class JSConfig {
 
     @Bean
+    @Scope(value = "prototype")
     ScriptEngine scriptEngine() {
         return new ScriptEngineManager().getEngineByName("nashorn");
     }

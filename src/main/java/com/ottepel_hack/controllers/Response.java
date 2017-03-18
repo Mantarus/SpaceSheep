@@ -10,6 +10,9 @@ public class Response {
     private String status;
     private Object body;
 
+    public Response() {
+    }
+
     public Response(boolean status, Object body) {
         this.status = status ? OK : ERROR;
         this.body = body;

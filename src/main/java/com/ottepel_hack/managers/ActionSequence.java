@@ -1,5 +1,6 @@
 package com.ottepel_hack.managers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,6 +9,10 @@ import java.util.List;
 public class ActionSequence {
 
     private List<String> sequence;
+
+    public ActionSequence() {
+        this.sequence = new ArrayList<>();
+    }
 
     public ActionSequence(List<String> sequence) {
         this.sequence = sequence;
