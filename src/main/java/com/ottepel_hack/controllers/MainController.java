@@ -32,6 +32,7 @@ public class MainController {
 
     @RequestMapping(value = "/script", method = RequestMethod.POST)
     public Response executeScript(@RequestBody String script) {
+        System.out.println(script);
         try {
             return new Response(true, solutionManager.testSolution(script));
         } catch (ScriptException e) {
