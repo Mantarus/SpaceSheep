@@ -81,13 +81,15 @@ public class LevelManager {
     public static void fail() {
         System.out.println("fail");
         actionSequence.getSequence().add("fail");
-        printLevel();
     }
 
-    public static void finish() {
-        System.out.println("finish");
-        actionSequence.getSequence().add("finish");
-        printLevel();
+    public static void checkFinish() {
+        if (sheep.getxPos() == levelState.getFinish().getxPos() &&
+                sheep.getyPos() == levelState.getFinish().getyPos()) {
+            System.out.println("finish");
+            actionSequence.getSequence().add("finish");
+            printLevel();
+        }
     }
 
     public static void moveLeft() {
@@ -96,6 +98,7 @@ public class LevelManager {
             System.out.println("moveLeft");
             actionSequence.getSequence().add("moveLeft");
             fall();
+            checkFinish();
             printLevel();
         }
     }
@@ -106,6 +109,7 @@ public class LevelManager {
             System.out.println("moveRight");
             actionSequence.getSequence().add("moveRight");
             fall();
+            checkFinish();
             printLevel();
         }
     }
@@ -114,8 +118,9 @@ public class LevelManager {
         if (!checkLeft() && checkUp() && checkUpLeft()) {
             System.out.println("climbLeft");
             actionSequence.getSequence().add("climbLeft");
-            moveUp();
-            moveLeft();
+            moveSheep(-1, 1);
+            fall();
+            checkFinish();
             printLevel();
         }
     }
@@ -124,15 +129,18 @@ public class LevelManager {
         if (!checkRight() && checkUp() && checkUpRight()) {
             System.out.println("climbRight");
             actionSequence.getSequence().add("climbRight");
-            moveUp();
-            moveRight();
+            moveSheep(1, 1);
+            fall();
+            checkFinish();
             printLevel();
         }
     }
 
     public static void jump() {
-        moveUp();
-        fall();
+        if (checkUp()) {
+            System.out.println("jump");
+            actionSequence.getSequence().add("jump");
+        }
         printLevel();
     }
 
@@ -143,8 +151,9 @@ public class LevelManager {
             moveSheep(-2, 0);
             System.out.println("jumpLeft");
             actionSequence.getSequence().add("jumpLeft");
-            printLevel();
             fall();
+            checkFinish();
+            printLevel();
         }
     }
 
@@ -155,8 +164,9 @@ public class LevelManager {
             moveSheep(2, 0);
             System.out.println("jumpRight");
             actionSequence.getSequence().add("jumpRight");
-            printLevel();
             fall();
+            checkFinish();
+            printLevel();
         }
     }
 
@@ -164,10 +174,6 @@ public class LevelManager {
         Sheep sheep = levelState.getSheep();
         sheep.setxPos(sheep.getxPos() + x);
         sheep.setyPos(sheep.getyPos() + y);
-        if (sheep.getxPos() == levelState.getFinish().getxPos() &&
-                sheep.getyPos() == levelState.getFinish().getyPos()) {
-            finish();
-        }
     }
 
     private static void moveUp() {
