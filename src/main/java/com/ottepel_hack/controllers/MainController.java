@@ -30,6 +30,7 @@ public class MainController {
         }
     }
 
+    @CrossOrigin(origins = "http://hacksheep.space")
     @RequestMapping(value = "/script", method = RequestMethod.POST)
     public Response executeScript(@RequestBody String script) {
         System.out.println(script);
@@ -40,6 +41,7 @@ public class MainController {
         }
     }
 
+    @CrossOrigin(origins = "http://hacksheep.space")
     @RequestMapping("/getlevel")
     public Response getLevel() {
         LevelManager.getNewLevel();
