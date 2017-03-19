@@ -33,6 +33,15 @@ public class MainController {
         }
     }
 
+    @RequestMapping(value = "/script", method = RequestMethod.POST)
+    public Response executeScript(@RequestParam("script") String script) {
+        try {
+            return new Response(true, solutionManager.testSolution(script));
+        } catch (ScriptException e) {
+            return new Response(false, e.getMessage());
+        }
+    }
+
     @RequestMapping("/getlevel")
     public Response getLevel() {
         LevelManager.getNewLevel();

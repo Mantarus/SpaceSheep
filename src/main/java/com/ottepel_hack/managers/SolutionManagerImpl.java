@@ -2,6 +2,7 @@ package com.ottepel_hack.managers;
 
 import com.ottepel_hack.controllers.SolutionResponseBody;
 import com.ottepel_hack.game.GameController;
+import com.ottepel_hack.game.LevelManager;
 import com.ottepel_hack.game.LevelState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,17 +16,21 @@ import java.util.ArrayList;
 @Component
 public class SolutionManagerImpl implements SolutionManager {
 
+    @Autowired
+    GameController controller;
+
     private static ActionSequence actionSequence;
 
     @Override
     public ActionSequence testSolution(String javascript) throws ScriptException {
-        return null;
+        LevelManager.setActionSequence(new ActionSequence());
+        controller.executeScript(javascript);
+        return LevelManager.getActionSequence();
     }
 
     @Override
-    public SolutionResponseBody testSolution(LevelState levelState, String javascript) throws ScriptException {
-        GameController controller = new GameController();
-        return controller.executeScript(javascript, levelState);
+    public ActionSequence testSolution(LevelState levelState, String javascript) throws ScriptException {
+        return controller.executeScript(javascript);
     }
 
 

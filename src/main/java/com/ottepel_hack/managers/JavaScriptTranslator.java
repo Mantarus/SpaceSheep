@@ -17,7 +17,6 @@ import java.io.InputStream;
  * Created by iistomin on 18/03/17.
  */
 @Component
-@Scope(value = "prototype")
 public class JavaScriptTranslator {
 
     @Autowired

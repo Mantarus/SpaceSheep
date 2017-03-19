@@ -12,6 +12,6 @@ public interface SolutionManager {
 
     public ActionSequence testSolution(String javascript) throws ScriptException;
 
-    public SolutionResponseBody testSolution(LevelState levelState, String javascript) throws ScriptException;
+    public ActionSequence testSolution(LevelState levelState, String javascript) throws ScriptException;
 
 }

@@ -1,20 +1,23 @@
 /**
  * Created by iistomin on 18/03/17.
  */
-var result = [];
+var LevelManager = Java.type("com.ottepel_hack.game.LevelManager");
 
 var moveLeft = function() {
-    result.push("MOVE LEFT");
+    LevelManager.moveLeft();
 };
 var moveRight = function() {
-    result.push("MOVE RIGHT");
+    LevelManager.moveRight();
 };
 var jumpLeft = function() {
-    result.push("JUMP LEFT");
+    LevelManager.jumpLeft();
 };
 var jumpRight = function() {
-    result.push("JUMP RIGHT");
+    LevelManager.jumpRight();
 };
-var returnRes = function() {
-    print(result);
+var climbLeft = function() {
+    LevelManager.climbLeft();
+};
+var climbRight = function() {
+    LevelManager.climbRight();
 };
