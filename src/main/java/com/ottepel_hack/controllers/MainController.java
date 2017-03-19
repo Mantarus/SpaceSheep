@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.script.ScriptException;
+import java.net.URLDecoder;
 
 /**
  * Created by iistomin on 17/03/17.
@@ -33,6 +34,7 @@ public class MainController {
     @CrossOrigin
     @RequestMapping(value = "/script", method = RequestMethod.POST)
     public Response executeScript(@RequestBody String script) {
+        script = URLDecoder.decode(script);
         System.out.println(script);
         try {
             return new Response(true, solutionManager.testSolution(script));
