@@ -35,6 +35,7 @@ public class MainController {
     @RequestMapping(value = "/script", method = RequestMethod.POST)
     public Response executeScript(@RequestBody String script) {
         script = URLDecoder.decode(script);
+        script = script.substring(0, script.length() - 1);
         System.out.println(script);
         try {
             return new Response(true, solutionManager.testSolution(script));
